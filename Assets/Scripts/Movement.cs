@@ -5,6 +5,11 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
+    [SerializeField] float mainThrust = 1f;
+    [SerializeField] float rotationThrust = 1f;
+
+
+    
     Rigidbody rb;
 
     void Awake()
@@ -28,8 +33,7 @@ public class Movement : MonoBehaviour
     {
         if(Input.GetKey(KeyCode.Space))
         {
-            Debug.Log("press space - thrusting");
-            rb.AddRelativeForce(0, 1, 0);
+            rb.AddRelativeForce(Vector3.up * mainThrust * Time.deltaTime);
         }
 
     }
@@ -39,12 +43,20 @@ public class Movement : MonoBehaviour
     {
         if(Input.GetKey(KeyCode.A))
         {
-            Debug.Log("press leftarrow ");
+            ApplyRotation(Vector3.forward);
         }
         else if(Input.GetKey(KeyCode.D))
         {
-            Debug.Log("press rightarrow");
+            ApplyRotation(Vector3.back);
         }
 
+    }
+
+    void ApplyRotation(Vector3 vector3)
+    {
+        rb.freezeRotation = true;
+        //강의에서는 float형을 매개변수로 받아서 rotationThrust를 바꿈 강의 방식이 데이터크기따져보면 더 효율적일듯
+        transform.Rotate(vector3 * rotationThrust * Time.deltaTime);
+        rb.freezeRotation = false;
     }
 }
