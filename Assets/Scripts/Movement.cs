@@ -7,9 +7,12 @@ public class Movement : MonoBehaviour
 {
     [SerializeField] float mainThrust = 1f;
     [SerializeField] float rotationThrust = 1f;
+    [SerializeField] AudioClip mainEngine = null;
 
     Rigidbody rb;
     AudioSource audioSource;
+
+    public bool isAlive;
 
     void Awake()
     {
@@ -30,7 +33,7 @@ public class Movement : MonoBehaviour
         {
             if(!audioSource.isPlaying)
             {
-                audioSource.Play();
+                audioSource.PlayOneShot(mainEngine);
             }
             rb.AddRelativeForce(Vector3.up * mainThrust * Time.deltaTime);
         }
