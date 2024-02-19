@@ -5,16 +5,26 @@ using UnityEngine.SceneManagement;
 public class CollisionHandler : MonoBehaviour
 {
     [SerializeField] float levelLoadDelay = 1f;
-    [SerializeField] AudioClip successLevel = null;
-    [SerializeField] AudioClip failLevel = null;
+    [SerializeField] AudioClip successAudio = null;
+    [SerializeField] AudioClip failAudio = null;
+
+    [SerializeField] ParticleSystem successParticle = null;
+    [SerializeField] ParticleSystem failParticle = null;
 
     AudioSource audioSource;
+    CapsuleCollider capsuleCollider;
 
     bool isTransitioning = false;
 
     void Awake()
     {
         audioSource = GetComponent<AudioSource>();
+        capsuleCollider = GetComponent<CapsuleCollider>();
+    }
+
+    void Update()
+    {
+        ActivateCheat();
     }
 
     void OnCollisionEnter(Collision other) 
@@ -33,7 +43,20 @@ public class CollisionHandler : MonoBehaviour
                 StartCrashSequence();
                 break;
         }
-        
+    }
+
+    void ActivateCheat()
+    {
+        if(Input.GetKey(KeyCode.L))
+        {
+            LoadNextLevel();
+        }
+        else if(Input.GetKey(KeyCode.C))
+        {
+            //collisionDisable = !collisionDisable       toggle collsion
+            capsuleCollider.enabled = false;
+            this.gameObject.transform.GetChild(1).GetComponent<CapsuleCollider>().enabled = false;
+        }
     }
 
     // void OnTriggerEnter(Collider other) 
@@ -46,25 +69,26 @@ public class CollisionHandler : MonoBehaviour
 
     void StartCrashSequence()
     {
-        PlayAudio(failLevel);
+        PlayAudio(failAudio);
+        failParticle.Play();
         GetComponent<Movement>().enabled = false;
         Invoke("ReloadLevel", levelLoadDelay);
-        isTransitioning = false;
+        isTransitioning = true;
     }
 
     void GoNextLevel()
     {
-        PlayAudio(successLevel);
+        PlayAudio(successAudio);
+        successParticle.Play();
         GetComponent<Movement>().enabled = false;
         Invoke("LoadNextLevel", levelLoadDelay); //delay보다는 levelLoadDelay가 더 어울리는듯.
-        isTransitioning = false;
+        isTransitioning = true;
     }
 
     void ReloadLevel()
     {
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentSceneIndex);
-        
     }
 
     void LoadNextLevel()
