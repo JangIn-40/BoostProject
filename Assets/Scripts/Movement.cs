@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    [SerializeField] float mainThrust = 1f;
+    [SerializeField] public float mainThrust = 1f;
     [SerializeField] float rotationThrust = 1f;
     [SerializeField] AudioClip mainEngine = null;
 

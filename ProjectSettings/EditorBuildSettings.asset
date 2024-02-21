@@ -5,10 +5,22 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Over.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
     path: Assets/Scenes/Under.unity
     guid: 95220ba67a1176446a9e35ab65e6e207
+  - enabled: 1
+    path: Assets/Scenes/BoostItem.unity
+    guid: 26ad9df3329bb884ea86cfbd0912296c
+  - enabled: 1
+    path: Assets/Scenes/Tunnel.unity
+    guid: 5468e22b2e49b3b4bb26aade241186ff
+  - enabled: 1
+    path: Assets/Scenes/MoveObs.unity
+    guid: 739a97fecaa5eb34aaa8cec659b46c3b
+  - enabled: 1
+    path: Assets/Scenes/3MoveOBs.unity
+    guid: c3e52a863bfe5c840ad07ef6fe04e696
   m_configObjects: {}

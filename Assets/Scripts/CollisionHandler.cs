@@ -59,13 +59,13 @@ public class CollisionHandler : MonoBehaviour
         }
     }
 
-    // void OnTriggerEnter(Collider other) 
-    // {
-    //     if(other.gameObject.CompareTag("Fuel"))
-    //     {
-    //         Destroy(other.gameObject);
-    //     }
-    // }
+    void OnTriggerEnter(Collider other) 
+    {
+        if(other.gameObject.CompareTag("Fuel"))
+        {
+            Destroy(other.gameObject);
+        }
+    }
 
     void StartCrashSequence()
     {

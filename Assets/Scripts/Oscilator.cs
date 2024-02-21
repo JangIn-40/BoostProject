@@ -17,6 +17,9 @@ public class Oscilator : MonoBehaviour
 
     void Update()
     {
+        //Mathf.Epsilon 매우 작은 float 주로 0과 비교하기 위해서 사용함
+        if(Period <= Mathf.Epsilon) { return; }
+
         float cycle = Time.time / Period; //시간에 따라 계속해서 증가함
 
         const float tau = Mathf.PI * 2; //6.238의 일정한 값
