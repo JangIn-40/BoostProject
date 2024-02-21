@@ -12,6 +12,7 @@ public class Movement : MonoBehaviour
     [SerializeField] ParticleSystem rightThrusterParticle = null;
     [SerializeField] ParticleSystem leftThrusterParticle = null;
     [SerializeField] ParticleSystem boosterParticle = null;
+    
 
     Rigidbody rb;
     AudioSource audioSource;
